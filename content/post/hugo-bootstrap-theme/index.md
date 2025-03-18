@@ -14,11 +14,9 @@ aliases:
 
 > Hugo theme for a secure, blazing fast and SEO-ready static website, using Bootstrap 5.
 
-Open-source MIT Licensed Hugo Theme, using Bootstrap 5.
-
 - 🛡️ Security aware
 
-  Get A+ scores on Mozilla Observatory out of the box. Easily change the default Security Headers to suit your needs.
+  hello
 
 - ⚡ Fast by default
 

@@ -1,7 +1,7 @@
 .home {
-    --bd-purple: #4c0bce;
-    --bd-violet: #712cf9;
-    --bd-accent: #ffe484;
+    --bd-purple: #000000;
+    --bd-violet: #000000;
+    --bd-accent: #000000;
     --bd-violet-rgb: 112.520718,44.062154,249.437846;
     --bd-accent-rgb: 255,228,132;
     --bd-pink-rgb: 214,51,132;
@@ -17,7 +17,7 @@
         --bs-btn-bg: var(--bd-violet);
         --bs-btn-border-color: var(--bd-violet);
         --bs-btn-border-radius: .5rem;
-        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-color: var(--bs-black);
         --bs-btn-hover-bg: #6528e0;
         --bs-btn-hover-border-color: #6528e0;
         --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
