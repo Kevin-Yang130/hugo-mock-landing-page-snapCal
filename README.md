@@ -1,25 +1,29 @@
 # Hugo Mock Landing Page for SnapCal
 
-A **simple and clean Hugo-based landing page** tailor-made for **SnapCal** — an app that uses image recognition to estimate the calorie content of food. This lightweight starter puts your product's core message at the forefront, while offering easy customization, responsive design, and SEO-friendly structure. Perfect for getting a polished, professional presence online in no time.
+A **clean, minimal Hugo-based landing page** built for **SnapCal** — an app that estimates the calorie content of food using image recognition. This project focuses on clarity, responsiveness, and ease of customization. It’s ideal for showcasing a product with a polished, SEO-friendly web presence.
 
-🔗 **[Check out the live demo here](https://your-demo-link.github.io)** <!-- Replace with actual demo link if available -->
+🔗 **[Live Demo](https://your-username.github.io/hugo-mock-landing-page-autodeployed/)** <!-- Replace with actual GitHub Pages URL -->
 
 ---
 
 ## ⚙️ GitHub Actions Deployment Workflow
 
-This project includes a GitHub Actions workflow located at `.github/workflows/gh-pages-deployment.yaml`. The workflow:
+This repository uses GitHub Actions to automatically **build and deploy** the Hugo site to **GitHub Pages** whenever changes are pushed to the `main` branch.
 
-- Automatically builds the Hugo site
-- Deploys the generated static content to GitHub Pages
-- Is triggered on every push to the `main` branch
+The workflow file is located at `.github/workflows/gh-pages-deployment.yaml` and consists of the following steps:
 
-The deployment uses the [`peaceiris/actions-gh-pages`](https://github.com/peaceiris/actions-gh-pages) action to handle publishing. This removes the need for manual deployments and ensures the site stays up to date with every commit.
+### 🧱 Workflow Summary
 
-### 📝 Example Workflow Summary
+- **Trigger:** Push to `main` branch  
+- **Checkout:** Clones the repo and pulls submodules (for themes)  
+- **Hugo Setup:** Installs Hugo v0.144.1 with extended features  
+- **Build:** Compiles the Hugo site with draft content, garbage collection, and minification  
+- **Deploy:** Publishes the `public` folder to the `gh-pages` branch using `peaceiris/actions-gh-pages`
+
+### 📄 Sample Workflow
 
 ```yaml
-name: GitHub Pages Deployment
+name: 🏗️ Build and Deploy GitHub Pages
 
 on:
   push:
@@ -28,17 +32,27 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+      - name: 🔄 Check Out Source Repository
+        uses: actions/checkout@v3.5.1
         with:
-          hugo-version: '0.123.7'
-      - name: Build
-        run: hugo --minify
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+          submodules: true
+          fetch-depth: 0
+
+      - name: 🛠️ Initialize Hugo Environment
+        uses: peaceiris/actions-hugo@v2.6.0
+        with:
+          hugo-version: "0.144.1"
+          extended: true
+
+      - name: 🏗️ Compile Hugo Static Files
+        run: hugo -D --gc --minify
+
+      - name: 🚀 Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3.9.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_branch: gh-pages
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
