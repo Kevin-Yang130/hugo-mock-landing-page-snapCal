@@ -1,0 +1,47 @@
+{{ $imagesPattern := .Get "imagesPattern" }}
+{{ $aspectRatio := .Get "aspectRatio" | default "16/9" }}
+{{ $crossFade := .Get "crossFade" | default true }}
+{{ $withIndicators := .Get "withIndicators" | default true }}
+{{ $withControls := .Get "withControls" | default true }}
+
+{{ $images := resources.Match $imagesPattern }}
+{{ if not $images }}
+    {{ warnf "No images found matching pattern: %s" $imagesPattern }}
+{{ end }}
+
+<div id="carousel-{{ .Ordinal }}" class="carousel slide{{ if $crossFade }} carousel-fade{{ end }}" data-bs-ride="carousel">
+    {{ if and $withIndicators $images }}
+    <div class="carousel-indicators">
+        {{ range $index, $image := $images }}
+        <button type="button" data-bs-target="#carousel-{{ $.Ordinal }}" data-bs-slide-to="{{ $index }}" {{ if eq $index 0 }}class="active" aria-current="true"{{ end }} aria-label="Slide {{ add $index 1 }}"></button>
+        {{ end }}
+    </div>
+    {{ end }}
+
+    <div class="carousel-inner">
+        {{ if $images }}
+            {{ range $index, $image := $images }}
+            <div class="carousel-item{{ if eq $index 0 }} active{{ end }}">
+                <img src="{{ $image.RelPermalink }}" class="d-block w-100" alt="Slide {{ add $index 1 }}" style="aspect-ratio: {{ $aspectRatio }}; object-fit: cover;">
+            </div>
+            {{ end }}
+        {{ else }}
+            <div class="carousel-item active">
+                <div class="d-block w-100 bg-light" style="aspect-ratio: {{ $aspectRatio }}; display: flex; align-items: center; justify-content: center;">
+                    <p class="text-muted">No images found</p>
+                </div>
+            </div>
+        {{ end }}
+    </div>
+
+    {{ if and $withControls $images }}
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ .Ordinal }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ .Ordinal }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    {{ end }}
+</div> 
