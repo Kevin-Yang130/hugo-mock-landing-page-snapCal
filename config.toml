@@ -1,7 +1,7 @@
 baseURL = 'https://github.com/Kevin-Yang130/hugo-mock-landing-page-autodeployed/'
 title = "SnapCal"
 author = "Kevin Yang-Li"
-copyright = "Open-source <a class=\"text-muted text-decoration-none\" href=\"https://github.com/filipecarneiro/hugo-bootstrap-theme/blob/main/LICENSE\">MIT</a> Licensed."
+copyright = "Kevin Yang-Li"
 
 timeZone = 'Europe/London'
 
