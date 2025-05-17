@@ -1,3 +1,3 @@
 User-agent: *
 Disallow: /404.html
-Sitemap: https://github.com/Kevin-Yang130/hugo-mock-landing-page-snapCal/sitemap.xml
+Sitemap: https://snapcal.cfd/sitemap.xml
