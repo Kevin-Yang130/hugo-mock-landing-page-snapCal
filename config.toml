@@ -1,4 +1,4 @@
-baseURL = 'http://localhost:1313/'
+baseURL = 'https://Kevin-Yang130.github.io/hugo-mock-landing-page-autodeployed/'
 title = "SnapCal"
 author = "Kevin Yang-Li"
 copyright = "Kevin Yang-Li"
